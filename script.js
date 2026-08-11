@@ -1,109 +1,114 @@
-// --- Section 1: Core Dataset & Core Game Configurations ---
+// --- Section 1: Gamified Core Database Pool ---
 const gameDatabase = {
     1: {
-        title: "1. Blue Bin Sorter",
-        desc: "Check everyday residential sorting items. Identify if they belong in the Blue Recycling Bin or the General Trash chute.",
+        title: "01. BLUE BIN PIPELINE",
+        desc: "Scan the domestic target item. Determine if it belongs inside the Blue Commingled Recycler or General Disposal Chutes.",
         tutorial: "Tutorial Rule: Only clean paper, plastics, glass, and metals can enter the blue bin. Food wrappers or tissue papers contaminate the batch.",
         items: [
-            { name: "Clean Milk Carton", icon: "fa-box", target: "Blue Bin", tip: "Correct! Empty beverage boxes are recyclable." },
-            { name: "Oily Pizza Box Cover", icon: "fa-pizza-slice", target: "Trash Chute", tip: "Correct! Food stains cause whole-bin contamination." },
-            { name: "Rinsed Shampoo Bottle", icon: "fa-bottle-droplet", target: "Blue Bin", tip: "Correct! Plastic care bottles are acceptable when empty." },
-            { name: "Dirty Facial Tissue", icon: "fa-box-tissue", target: "Trash Chute", tip: "Correct! Used papers lose fiber density and belong in trash." },
-            { name: "Rinsed Glass Jam Jar", icon: "fa-jar", target: "Blue Bin", tip: "Correct! Glass containers are highly recyclable if empty." },
-            { name: "Sticky Bubble Tea Cup", icon: "fa-mug-hot", target: "Trash Chute", tip: "Correct! Residual sugar spoils the batch." },
-            { name: "Clean Paper Envelope", icon: "fa-envelope", target: "Blue Bin", tip: "Correct! Clean mail and envelopes go into the blue bin." },
-            { name: "Food Leftovers / Waste", icon: "fa-apple-whole", target: "Trash Chute", tip: "Correct! Organic waste goes to general incinerators." }
+            { name: "Clean Milk Carton", icon: "fa-box", target: "BLUE BIN", tip: "Pure clean paper composites accepted." },
+            { name: "Oily Pizza Box Cover", icon: "fa-pizza-slice", target: "TRASH CHUTE", tip: "Organic grease cancels recyclability." },
+            { name: "Rinsed Shampoo Bottle", icon: "fa-bottle-droplet", target: "BLUE BIN", tip: "High-density polymers are fully recyclable." },
+            { name: "Dirty Facial Tissue", icon: "fa-box-tissue", target: "TRASH CHUTE", tip: "Degraded hygiene fibers disrupt batch filtering." }
         ],
-        targets: ["Blue Bin", "Trash Chute"]
+        targets: ["BLUE BIN", "TRASH CHUTE"]
     },
     2: {
-        title: "2. Rinse & Dry Blitz",
-        desc: "Determine if an item is ready to be recycled. Contaminated packages must be treated before disposal.",
+        title: "02. RINSE & DRY BLITZ",
+        desc: "Evaluate fluid volume contents. Packages containing residue must undergo clearing cycles.",
         tutorial: "Tutorial Rule: Packages holding residual foods or liquids need to be washed before they can go into recycling loops.",
         items: [
-            { name: "Soda Can with Leftover Drink", icon: "fa-wine-bottle", target: "Needs Rinsing", tip: "Correct! Liquid spills disrupt paper recycling machinery." },
-            { name: "Bone-Dry Milk Jug", icon: "fa-prescription-bottle", target: "Ready to Recycle", tip: "Correct! Completely dry materials can securely enter bins." },
-            { name: "Sticky Chili Sauce Bottle", icon: "fa-bottle-water", target: "Needs Rinsing", tip: "Correct! Sugary residue damages processing filters." },
-            { name: "Unwashed Tuna Tin Can", icon: "fa-sheet-plastic", target: "Needs Rinsing", tip: "Correct! Fish oils contaminate other porous materials." },
-            { name: "Drained Water Bottle", icon: "fa-bottle-water", target: "Ready to Recycle", tip: "Correct! No residue means it is safe to sort." },
-            { name: "Clean Dried Aluminum Foil", icon: "fa-scroll", target: "Ready to Recycle", tip: "Correct! Clean metal foil can be compressed and recycled." }
+            { name: "Soda Can with Leftover Drink", icon: "fa-wine-bottle", target: "NEEDS RINSE", tip: "Liquid content spills damage paper mills downstream." },
+            { name: "Bone-Dry Milk Jug", icon: "fa-prescription-bottle", target: "READY TO SORT", tip: "Dry, unsoiled hulls process cleanly." }
         ],
-        targets: ["Ready to Recycle", "Needs Rinsing"]
+        targets: ["READY TO SORT", "NEEDS RINSE"]
     },
     3: {
-        title: "3. Container Return Match",
-        desc: "Follow Singapore's 'Return Right' Extended Producer Responsibility policy guidelines. Match containers to their valid destination.",
+        title: "03. EPR CONTAINER RETURN",
+        desc: "Identify items managed by Extended Producer Responsibility policies for barcode-deposit automated return systems.",
         tutorial: "Tutorial Rule: Under the latest rules, metal cans and plastic bottles earn a 10-cent refund at Reverse Vending Machines (RVMs).",
         items: [
-            { name: "Aluminum Soft Drink Can", icon: "fa-can-food", target: "RVM Machine", tip: "Correct! Clean beverage cans earn 10c credit at RVM centers." },
-            { name: "Glass Wine Bottle", icon: "fa-glass-water", target: "Blue Bin", tip: "Correct! Glass is processed via the regular blue bin system, not RVMs." },
-            { name: "Plastic Water Bottle", icon: "fa-bottle-water", target: "RVM Machine", tip: "Correct! PET bottles are collected separately at retail reverse bins." },
-            { name: "Plastic Detergent Pouch", icon: "fa-soap", target: "Blue Bin", tip: "Correct! Refill packets are blue bin waste, not for vending devices." },
-            { name: "Metallic Biscuit Tin Box", icon: "fa-box-archive", target: "Blue Bin", tip: "Correct! Large household canisters belong in general blue bins." },
-            { name: "Empty Sprite Bottle", icon: "fa-bottle-droplet", target: "RVM Machine", tip: "Correct! Barcoded beverage items go right to reverse systems." }
+            { name: "Aluminum Soft Drink Can", icon: "fa-can-food", target: "RVM CENTER", tip: "Barcoded aluminum qualifies for financial credit." },
+            { name: "Glass Wine Bottle", icon: "fa-glass-water", target: "BLUE BIN", tip: "Glass jars enter traditional commingled routes." }
         ],
-        targets: ["RVM Machine", "Blue Bin"]
+        targets: ["RVM CENTER", "BLUE BIN"]
     },
     4: {
-        title: "4. Contamination Strike",
-        desc: "Spot hazardous and non-recyclable materials that break down machines or cause fires.",
+        title: "04. HAZARD REJECTION MODE",
+        desc: "Isolate non-standard residential composites that compromise physical machinery networks.",
         tutorial: "Tutorial Rule: Household objects like styrofoam boxes, light bulbs, or clay pots do not belong in the public commingled bin.",
         items: [
-            { name: "Styrofoam Lunch Box", icon: "fa-cubes", target: "Contamination Risk", tip: "Correct! Expanded polystyrene foam is not recyclable in blue bins." },
-            { name: "Cardboard Box (Flat)", icon: "fa-square", target: "Safe Recyclable", tip: "Correct! Flattened, dry cardboard is highly welcome." },
-            { name: "Ceramic Coffee Mug", icon: "fa-mug-saucer", target: "Contamination Risk", tip: "Correct! Ceramics possess different melting thresholds than glass jars." },
-            { name: "Pyrex Glass Baking Dish", icon: "fa-plate-wheat", target: "Contamination Risk", tip: "Correct! Heat-resistant glass ruins recycled container flows." },
-            { name: "Clean Office Printing Paper", icon: "fa-file-lines", target: "Safe Recyclable", tip: "Correct! Non-greasy office sheet stocks are perfect." },
-            { name: "Broken Window Pane Glass", icon: "fa-heart-crack", target: "Contamination Risk", tip: "Correct! Structural panel pieces injure logistics crew members." }
+            { name: "Styrofoam Lunch Box", icon: "fa-cubes", target: "HAZARD RISK", tip: "Expanded polystyrene foam breaks up and contaminates cycles." },
+            { name: "Cardboard Box (Flat)", icon: "fa-square", target: "SAFE METRIC", tip: "Flattened cardboard passes structural test codes cleanly." }
         ],
-        targets: ["Safe Recyclable", "Contamination Risk"]
+        targets: ["SAFE METRIC", "HAZARD RISK"]
     },
     5: {
-        title: "5. E-Waste Collector",
-        desc: "Route dangerous electrical components and spent batteries safely to separate recovery systems.",
+        title: "05. E-WASTE HARVEST",
+        desc: "Safely isolate heavy metal circuit cells from municipal trash processing networks.",
         tutorial: "Tutorial Rule: E-waste has dedicated collection kiosks across supermarkets and malls. Do not drop items down the trash chute.",
         items: [
-            { name: "AA Alkaline Battery", icon: "fa-battery-quarter", target: "E-Waste Kiosk", tip: "Correct! Leaking batteries leach toxic heavy chemicals." },
-            { name: "Broken Charging Cable", icon: "fa-cable-car", target: "E-Waste Kiosk", tip: "Correct! Copper wires are handled in specialized streams." },
-            { name: "Plain Paper Notebook", icon: "fa-book-open", target: "Blue Bin", tip: "Correct! Clean writing notebook sheets go to normal paper paths." },
-            { name: "Dead Smart Phone", icon: "fa-mobile-screen", target: "E-Waste Kiosk", tip: "Correct! Electronics contain rare earth metals that must be salvaged safely." },
-            { name: "Burnt-Out LED Light Bulb", icon: "fa-lightbulb", target: "E-Waste Kiosk", tip: "Correct! Gas and component assemblies need isolated collection pipelines." },
-            { name: "Empty Cardboard Shoe Box", icon: "fa-gift", target: "Blue Bin", tip: "Correct! Plain structural packaging is simple blue bin material." }
+            { name: "AA Alkaline Battery", icon: "fa-battery-quarter", target: "TECH KIOSK", tip: "Spent cells release chemical elements into ground layers." },
+            { name: "Plain Paper Notebook", icon: "fa-book-open", target: "BLUE BIN", tip: "Organic writing fibers deploy down normal paper tracks." }
         ],
-        targets: ["E-Waste Kiosk", "Blue Bin"]
+        targets: ["TECH KIOSK", "BLUE BIN"]
     }
 };
 
 let currentActiveGame = 1;
 let currentMode = "tutorial";
 let globalScore = 0;
+let consecutiveStreak = 0;
+let currentExperienceXP = 0;
+let currentLevelRank = 1;
 let currentGameItemIndex = 0;
 let playTimerInterval = null;
 let playTimeRemaining = 30;
-// --- Section 2: DOM Tracking Selectors & Screen Builders ---
+
+// --- Tab Selector Layer Controllers ---
+document.querySelectorAll(".tab-toggle-btn").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        switchTabsTo(this.getAttribute("data-target"));
+    });
+});
+
+function switchTabsTo(tabId) {
+    document.querySelectorAll(".tab-toggle-btn").forEach(function(b) {
+        if (b.getAttribute("data-target") === tabId) b.classList.add("active");
+        else b.classList.remove("active");
+    });
+    document.querySelectorAll(".tab-content").forEach(function(box) {
+        if (box.id === tabId) box.classList.add("active-content");
+        else box.classList.remove("active-content");
+    });
+}
+
+document.getElementById("jump-to-games-btn").addEventListener("click", function() {
+    switchTabsTo("arcade-tab");
+    window.scrollTo(0, 0);
+});
+// --- Section 2: DOM Screen Elements & HUD Progress Systems ---
 const displayWindow = document.getElementById("interactive-display-window");
 const actionRow = document.getElementById("action-targets-row");
 const systemFeedback = document.getElementById("system-feedback");
 const modeBadge = document.getElementById("mode-badge");
+const crtScreen = document.getElementById("main-crt-screen");
 
 function bootActiveGameConfig() {
     const config = gameDatabase[currentActiveGame];
-    
     clearInterval(playTimerInterval);
-    document.getElementById("game-timer-wrapper").classList.add("hidden");
+    document.getElementById("game-timer-wrapper").className = "hidden-hud-element";
     document.getElementById("game-title").innerText = config.title;
     
     if (currentMode === "tutorial") {
-        modeBadge.className = "badge-mode-tutorial";
-        modeBadge.innerText = "Tutorial Active";
+        modeBadge.className = "badge-status-training";
+        modeBadge.innerText = "TRAINING MODULE ACTIVE";
         document.getElementById("game-description").innerText = config.tutorial;
     } else {
-        modeBadge.className = "badge-mode-play";
-        modeBadge.innerText = "Play Mode Active - Speed Run!";
+        modeBadge.className = "badge-status-speed";
+        modeBadge.innerText = "LIVE TIME-TRIAL RUNNING";
         document.getElementById("game-description").innerText = config.desc;
         startCountdownTimer();
     }
-
     currentGameItemIndex = 0;
     renderInteractionInterface();
 }
@@ -111,10 +116,8 @@ function bootActiveGameConfig() {
 function renderInteractionInterface() {
     const config = gameDatabase[currentActiveGame];
     const currentItem = config.items[currentGameItemIndex];
-
     displayWindow.innerHTML = "";
     actionRow.innerHTML = "";
-    systemFeedback.innerText = "Evaluate the target item shown below...";
 
     const card = document.createElement("div");
     card.className = "card-item";
@@ -125,50 +128,92 @@ function renderInteractionInterface() {
         const btn = document.createElement("button");
         btn.className = "action-btn";
         btn.innerText = targetName;
-        btn.addEventListener("click", function() {
-            processPlayerInput(targetName);
-        });
+        btn.addEventListener("click", function() { processPlayerInput(targetName); });
         actionRow.appendChild(btn);
     });
 }
-// --- Section 3: Gameplay Calculation Loops & Listener Connectors ---
+
+// Visual Floating Points Engine Popup Generator
+function spawnFloatingTextPopup(textValue) {
+    const layer = document.getElementById("floating-score-layer");
+    const label = document.createElement("div");
+    label.className = "floating-bonus-text";
+    label.innerText = textValue;
+    label.style.left = (Math.random() * 40 + 30) + "%"; // Center variation
+    layer.appendChild(label);
+    setTimeout(() => { label.remove(); }, 800);
+}
+// --- Section 3: Input Check Logic, Combo Tracking & Level Scaling ---
 function processPlayerInput(selectedTarget) {
     const config = gameDatabase[currentActiveGame];
     const item = config.items[currentGameItemIndex];
 
     if (selectedTarget === item.target) {
-        systemFeedback.style.color = "#34d399";
-        systemFeedback.innerText = "★ Success! " + item.tip;
+        consecutiveStreak++;
+        let currentMultiplier = Math.min(Math.floor(consecutiveStreak / 3) + 1, 4);
+        let pointBase = (currentMode === "play") ? 25 : 10;
+        let finalAward = pointBase * currentMultiplier;
         
-        globalScore += (currentMode === "play") ? 25 : 10;
-        document.getElementById("global-points").innerText = globalScore;
+        globalScore += finalAward;
+        currentExperienceXP += 15;
+        
+        // Zero pads global arcade points display ticker
+        document.getElementById("global-points").innerText = String(globalScore).padStart(4, '0');
+        document.getElementById("global-multiplier").innerText = currentMultiplier + "x";
+        
+        systemFeedback.style.color = "#34d399";
+        systemFeedback.innerText = "★ STREAK BONUS! " + item.tip;
+        spawnFloatingTextPopup("+" + finalAward + " PTS");
+        
+        verifyPlayerXPRankUp();
     } else {
+        consecutiveStreak = 0;
+        document.getElementById("global-multiplier").innerText = "1x";
+        
         systemFeedback.style.color = "#ef4444";
-        systemFeedback.innerText = "⚠️ Correction needed. Correct option was: " + item.target;
+        systemFeedback.innerText = "⚠️ INCORRECT PATH ROUTE. TARGET DESTINATION: " + item.target;
+        
+        // Triggers Screen Rumble Shake effect on false inputs
+        crtScreen.classList.add("screen-rumble-shake");
+        setTimeout(() => { crtScreen.classList.remove("screen-rumble-shake"); }, 300);
     }
 
     setTimeout(function() {
         currentGameItemIndex = (currentGameItemIndex + 1) % config.items.length;
-        if (currentMode === "play" && playTimeRemaining <= 0) {
-            endMatchCycle();
-        } else {
-            renderInteractionInterface();
-        }
-    }, 1800);
+        if (currentMode === "play" && playTimeRemaining <= 0) endMatchCycle();
+        else renderInteractionInterface();
+    }, 1500);
+}
+
+function verifyPlayerXPRankUp() {
+    const fill = document.getElementById("xp-bar-fill");
+    const display = document.getElementById("xp-numerical-display");
+    const rankLabel = document.getElementById("player-rank-title");
+    
+    if (currentExperienceXP >= 100) {
+        currentLevelRank++;
+        currentExperienceXP = currentExperienceXP % 100;
+        
+        // Level rank names progression matrix
+        if (currentLevelRank === 2) rankLabel.innerHTML = '<i class="fa-solid fa-user-shield text-neon-cyan"></i> SORTING COMMANDER';
+        else if (currentLevelRank >= 3) rankLabel.innerHTML = '<i class="fa-solid fa-crown text-neon-orange"></i> RECYCLING ELITE';
+        
+        alert("⚡ LEVEL UP! You reached Rank level " + currentLevelRank + "!");
+    }
+    fill.style.width = currentExperienceXP + "%";
+    display.innerText = "LEVEL PROGRESS: " + currentExperienceXP + "/100 XP";
 }
 
 function startCountdownTimer() {
     playTimeRemaining = 30;
     const element = document.getElementById("game-timer-wrapper");
     const countSpan = document.getElementById("game-countdown");
-    
-    element.classList.remove("hidden");
+    element.className = "";
     countSpan.innerText = playTimeRemaining;
 
     playTimerInterval = setInterval(function() {
         playTimeRemaining--;
         countSpan.innerText = playTimeRemaining;
-        
         if (playTimeRemaining <= 0) {
             clearInterval(playTimerInterval);
             endMatchCycle();
@@ -178,9 +223,9 @@ function startCountdownTimer() {
 
 function endMatchCycle() {
     actionRow.innerHTML = "";
-    displayWindow.innerHTML = '<div class="card-item"><i class="fa-solid fa-trophy text-warning"></i><span>Game Session Completed!</span></div>';
-    systemFeedback.style.color = "#ffffff";
-    systemFeedback.innerText = "Time limit reached! Switch games above or shift modes to continue training.";
+    displayWindow.innerHTML = '<div class="card-item"><i class="fa-solid fa-trophy text-neon-orange"></i><span>SESSION COMPLETED</span></div>';
+    systemFeedback.style.color = "#fff";
+    systemFeedback.innerText = "TIME OUT: Pilot score metrics logged. Select alternative streams above to run again.";
 }
 
 document.getElementById("mode-tutorial").addEventListener("click", function() {
@@ -197,11 +242,9 @@ document.getElementById("mode-play").addEventListener("click", function() {
     bootActiveGameConfig();
 });
 
-document.querySelectorAll(".game-select-btn").forEach(function(btn) {
+document.querySelectorAll(".arcade-game-btn").forEach(function(btn) {
     btn.addEventListener("click", function() {
-        document.querySelectorAll(".game-select-btn").forEach(function(b) {
-            b.classList.remove("active");
-        });
+        document.querySelectorAll(".arcade-game-btn").forEach(function(b) { b.classList.remove("active"); });
         this.classList.add("active");
         currentActiveGame = parseInt(this.getAttribute("data-game"));
         bootActiveGameConfig();
