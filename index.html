@@ -12,6 +12,18 @@
 </head>
 <body>
 
+    <!-- Username Prompt Modal Overlay -->
+    <div id="username-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon"><i class="fa-solid fa-gamepad"></i></div>
+            <h2>EcoArcade Login</h2>
+            <p>Enter your arcade runner name to track your rank on the local leaderboard:</p>
+            <input type="text" id="username-input" placeholder="Arcade Name (Max 12 chars)" maxlength="12">
+            <div id="modal-error" class="text-danger hidden">Please enter a valid name!</div>
+            <button id="username-submit" class="action-btn" style="margin-top:15px; width:100%;">Enter Arcade</button>
+        </div>
+    </div>
+
     <!-- Header / Global Scoreboard Bar -->
     <header>
         <div class="container nav-container">
@@ -23,7 +35,8 @@
                 </ul>
             </nav>
             <div class="arcade-score">
-                <i class="fa-solid fa-star"></i> Lifetime Points: <span id="global-points">0</span>
+                <span id="player-welcome-tag"><i class="fa-solid fa-user"></i> Player: </span> | 
+                <i class="fa-solid fa-star"></i> Points: <span id="global-points">0</span>
             </div>
         </div>
     </header>
@@ -34,12 +47,10 @@
             <div class="arcade-intro text-center">
                 <span class="badge">Gamified Sustainability</span>
                 <h1>The Singapore Recycling Arcade</h1>
-                <p>Master the rules of the Blue Bin and Return Right initiatives through 5 interactive games. Choose Tutorial Mode to learn the mechanics or Play Mode to challenge the clock!</p>
+                <p>Master the rules of the Blue Bin and Return Right initiatives. Choose Tutorial Mode to learn the mechanics or Play Mode to challenge the clock!</p>
             </div>
 
-            <!-- Arcade Cabinet Control Panel Frame -->
             <div class="arcade-cabinet">
-                <!-- Mode Selector and Game Navigation Buttons -->
                 <div class="cabinet-controls">
                     <div class="mode-toggle-zone">
                         <span class="control-label">Select Mode:</span>
@@ -59,33 +70,34 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Live Gameplay Screen Display -->
                 <div class="cabinet-screen">
-                    <!-- Game Meta & Instructions Panel -->
                     <div class="game-instructions-panel">
                         <h2 id="game-title">1. Blue Bin Sorter</h2>
                         <div id="mode-badge" class="badge-mode-tutorial">Tutorial active - Learn step by step</div>
                         <p id="game-description" class="instr-text">Sort everyday household trash items. Only clean, unsoiled materials go into the Blue Recycling Bin!</p>
                     </div>
 
-                    <!-- Core Active Gameplay Arena -->
                     <div class="play-arena">
                         <div id="game-timer-wrapper" class="hidden">Time Left: <span id="game-countdown">30</span>s</div>
-                        
-                        <!-- Dynamic Interaction Window -->
-                        <div id="interactive-display-window">
-                            <!-- Injected elements generate dynamically here -->
-                        </div>
-
-                        <!-- Target Action Click Targets -->
-                        <div id="action-targets-row" class="action-row">
-                            <!-- Action targets generate dynamically here -->
-                        </div>
+                        <div id="interactive-display-window"></div>
+                        <div id="action-targets-row" class="action-row"></div>
                     </div>
 
-                    <!-- Visual System Feedback Text -->
                     <div id="system-feedback" class="feedback-box">Click a target above to begin checking items!</div>
+                </div>
+
+                <!-- Leaderboard Dashboard Addition -->
+                <div class="leaderboard-box">
+                    <div class="leaderboard-header">
+                        <h3><i class="fa-solid fa-trophy text-warning"></i> Local Top 100 Leaderboard</h3>
+                        <span class="reset-link" id="reset-player-data">Change Player Name</span>
+                    </div>
+                    <div class="leaderboard-scroll">
+                        <div id="leaderboard-entries" class="leaderboard-grid-list">
+                            <!-- Dynamic rows are generated and sorted here by JS -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,46 +112,29 @@
             </div>
 
             <div class="edu-grid">
-                <!-- Blue Bin Deep Dive Cards -->
                 <div class="edu-card">
                     <div class="edu-card-icon blue-theme"><i class="fa-solid fa-dumpster animate-bounce"></i></div>
                     <h3>The Blue Commingled Bin</h3>
-                    <p>Singapore operates a commingled single-stream recycling system. All valid materials go into one bin without separation, which makes preparation critical to avoid ruining batches.</p>
+                    <p>Singapore operates a commingled single-stream recycling system. Preparation is critical to avoid ruining batches.</p>
                     <ul class="edu-list">
-                        <li><strong>Paper & Cardboard:</strong> Fold flat boxes down. Do not include food boxes soaked in grease.</li>
-                        <li><strong>Plastics:</strong> Bottles, detergent packaging, and shampoo tubs must be completely clean.</li>
-                        <li><strong>Metals:</strong> Clean food cans, beverage aluminum cans, and metal biscuit tins are accepted.</li>
-                        <li><strong>Glass:</strong> Bottles, cosmetic jars, and medicine vials. No mirrors or windows.</li>
+                        <li><strong>Paper & Cardboard:</strong> Fold flat boxes down. No food grease.</li>
+                        <li><strong>Plastics:</strong> Bottles and liquid trays must be empty and clean.</li>
                     </ul>
                 </div>
 
-                <!-- Contamination Hazards Card -->
                 <div class="edu-card">
                     <div class="edu-card-icon danger-theme"><i class="fa-solid fa-biohazard"></i></div>
                     <h3>The Contamination Crisis</h3>
-                    <p>Around 40% of items put inside blue recycling bins currently cannot be processed because they are dirty, toxic, or non-recyclable.</p>
+                    <p>Around 40% of items put inside blue recycling bins currently cannot be processed because they are dirty or non-recyclable.</p>
                     <ul class="edu-list">
-                        <li><strong>Food and Liquids:</strong> Half-empty cups or leftover food ruins clean paper items around it.</li>
-                        <li><strong>Tissue & Wipes:</strong> Used tissues lose paper fiber integrity and are heavily contaminated with hygiene waste.</li>
-                        <li><strong>Styrofoam Packaging:</strong> Food containers or item packing structural blocks are strictly rejected from blue streams.</li>
-                    </ul>
-                </div>
-
-                <!-- Extended EPR Schemes -->
-                <div class="edu-card">
-                    <div class="edu-card-icon specialized-theme"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>Specialized Recovery Streams</h3>
-                    <p>Certain classes of materials must never enter the blue bin infrastructure because they require specific sorting procedures or toxic chemical processing pipelines.</p>
-                    <ul class="edu-list">
-                        <li><strong>Beverage Containers:</strong> Return plastic drink bottles and cans to dedicated Reverse Vending Machines (RVMs) for a deposit refund.</li>
-                        <li><strong>Regulated E-Waste:</strong> Batteries, computers, electrical cables, charging brick adapters, and large household appliances require dedicated electronic waste collection boxes.</li>
+                        <li><strong>Food and Liquids:</strong> Liquid residue ruins porous paper sheets.</li>
+                        <li><strong>Tissue & Wipes:</strong> Used tissue papers cannot be repurposed.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Page Footer Links -->
     <footer>
         <div class="container text-center">
             <p>&copy; 2026 EcoArcade SG. Built specifically to gamify domestic waste reduction strategies.</p>
