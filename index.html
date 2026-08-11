@@ -3,213 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoCycle SG - Interactive Recycling Hub</title>
-    <!-- CSS Stylesheet -->
+    <title>EcoArcade SG - Interactive Recycling Games</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Header / Global Scoreboard Bar -->
     <header>
         <div class="container nav-container">
-            <div class="logo">
-                <i class="fa-solid fa-recycle text-primary"></i> EcoCycle <span>SG</span>
-            </div>
+            <div class="logo"><i class="fa-solid fa-gamepad text-primary"></i> EcoArcade <span>SG</span></div>
             <nav>
                 <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#game-section">Mini-Games</a></li>
-                    <li><a href="#tracker-section">Impact Tracker</a></li>
-                    <li><a href="#community-section">Community Hub</a></li>
+                    <li><a href="#arcade-section" class="active">Game Arcade</a></li>
+                    <li><a href="#education-section">Recycling Knowledge Hub</a></li>
                 </ul>
             </nav>
-            <div class="user-badge">
-                <i class="fa-solid fa-award"></i> Points: <span id="nav-points">0</span>
+            <div class="arcade-score">
+                <i class="fa-solid fa-star"></i> Lifetime Points: <span id="global-points">0</span>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <span class="badge">Singapore Recycling Initiative</span>
-                <h1>Recycle Right, Stop Contamination</h1>
-                <p>Many household materials intended for recycling end up in incinerators due to improper disposal and food residue. Learn how to clean, sort, and track your recycling habits to make a real difference today.</p>
-                <div class="hero-btns">
-                    <a href="#game-section" class="btn btn-primary">Play & Learn</a>
-                    <a href="#tracker-section" class="btn btn-secondary">Log Your Waste</a>
-                </div>
+    <!-- Main Game Arcade Area -->
+    <section id="arcade-section" class="arcade-bg">
+        <div class="container">
+            <div class="arcade-intro text-center">
+                <span class="badge">Gamified Sustainability</span>
+                <h1>The Singapore Recycling Arcade</h1>
+                <p>Master the rules of the Blue Bin and Return Right initiatives through 5 interactive games. Choose Tutorial Mode to learn the mechanics or Play Mode to challenge the clock!</p>
             </div>
-            <div class="hero-image-placeholder">
-                <div class="status-card text-center">
-                    <i class="fa-solid fa-dumpster-fire fa-2x text-danger"></i>
-                    <h3>Did You Know?</h3>
-                    <p>Singapore's domestic recycling rate has faced significant declines due to blue bin contamination.</p>
+
+            <!-- Arcade Cabinet Control Panel Frame -->
+            <div class="arcade-cabinet">
+                <!-- Mode Selector and Game Navigation Buttons -->
+                <div class="cabinet-controls">
+                    <div class="mode-toggle-zone">
+                        <span class="control-label">Select Mode:</span>
+                        <div class="toggle-buttons">
+                            <button id="mode-tutorial" class="mode-btn active">Tutorial Mode</button>
+                            <button id="mode-play" class="mode-btn">Play Mode</button>
+                        </div>
+                    </div>
+                    <div class="game-picker">
+                        <span class="control-label">Choose Game:</span>
+                        <div class="picker-grid">
+                            <button class="game-select-btn active" data-game="1">1. Blue Bin Sorter</button>
+                            <button class="game-select-btn" data-game="2">2. Rinse & Dry Blitz</button>
+                            <button class="game-select-btn" data-game="3">3. Container Return Match</button>
+                            <button class="game-select-btn" data-game="4">4. Contamination Strike</button>
+                            <button class="game-select-btn" data-game="5">5. E-Waste Collector</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Gameplay Screen Display -->
+                <div class="cabinet-screen">
+                    <!-- Game Meta & Instructions Panel -->
+                    <div class="game-instructions-panel">
+                        <h2 id="game-title">1. Blue Bin Sorter</h2>
+                        <div id="mode-badge" class="badge-mode-tutorial">Tutorial active - Learn step by step</div>
+                        <p id="game-description" class="instr-text">Sort everyday household trash items. Only clean, unsoiled materials go into the Blue Recycling Bin!</p>
+                    </div>
+
+                    <!-- Core Active Gameplay Arena -->
+                    <div class="play-arena">
+                        <div id="game-timer-wrapper" class="hidden">Time Left: <span id="game-countdown">30</span>s</div>
+                        
+                        <!-- Dynamic Interaction Window -->
+                        <div id="interactive-display-window">
+                            <!-- Injected elements generate dynamically here -->
+                        </div>
+
+                        <!-- Target Action Click Targets -->
+                        <div id="action-targets-row" class="action-row">
+                            <!-- Action targets generate dynamically here -->
+                        </div>
+                    </div>
+
+                    <!-- Visual System Feedback Text -->
+                    <div id="system-feedback" class="feedback-box">Click a target above to begin checking items!</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mini-Game Section -->
-    <section id="game-section" class="bg-light">
+    <!-- Comprehensive Recycling Resource Section -->
+    <section id="education-section" class="edu-bg">
         <div class="container">
             <div class="section-title text-center">
-                <h2>Recycle Sort Mini-Game</h2>
-                <p>Pick up knowledge in bite-sized chunks! Drag or click to sort items into the correct bins. Remember: contaminated items belong in the trash!</p>
-            </div>
-            
-            <div class="game-wrapper">
-                <div class="game-score-board">
-                    <div>Game Score: <span id="game-score">0</span></div>
-                    <div>Multiplier: <span id="game-multiplier">1x</span></div>
-                </div>
-
-                <div class="item-display-zone">
-                    <div id="active-item" class="game-item" data-type="recyclable" data-clean="true">
-                        <i class="fa-solid fa-bottle-water"></i>
-                        <span id="item-name">Clean Plastic Bottle</span>
-                    </div>
-                </div>
-
-                <div class="bins-container">
-                    <div class="bin blue-bin" data-bin="recycle">
-                        <i class="fa-solid fa-trash-arrow-up"></i>
-                        <h3>Blue Recycling Bin</h3>
-                        <p>Clean paper, plastic, glass & metal</p>
-                    </div>
-                    <div class="bin trash-bin" data-bin="trash">
-                        <i class="fa-solid fa-trash-can"></i>
-                        <h3>General Waste</h3>
-                        <p>Food, contaminated items & organics</p>
-                    </div>
-                </div>
-                
-                <div id="game-feedback" class="feedback-message"></div>
-            </div>
-        </div>
-    </section>
-    <!-- Impact Tracker Section -->
-    <section id="tracker-section">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>Household Impact Tracker</h2>
-                <p>Keep track of how much you recycle correctly. Earn points to reward your eco-friendly habits!</p>
+                <h2>Recycle Right Knowledge Hub</h2>
+                <p>An in-depth breakdown of Singapore's strict recycling standards to prevent bin contamination.</p>
             </div>
 
-            <div class="tracker-grid">
-                <!-- Log Form -->
-                <div class="card">
-                    <h3>Log Your Items</h3>
-                    <form id="tracker-form">
-                        <div class="form-group">
-                            <label for="item-select">Material Type</label>
-                            <select id="item-select" required>
-                                <option value="plastic">Plastic Bottle / Container</option>
-                                <option value="paper">Cardboard / Newspaper</option>
-                                <option value="metal">Aluminium Can</option>
-                                <option value="glass">Glass Jar</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Is it clean and free from food residue?</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="item-clean" value="yes" checked> Yes, washed & dry</label>
-                                <label><input type="radio" name="item-clean" value="no"> No, contains residue</label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Add to Tracker</button>
-                    </form>
+            <div class="edu-grid">
+                <!-- Blue Bin Deep Dive Cards -->
+                <div class="edu-card">
+                    <div class="edu-card-icon blue-theme"><i class="fa-solid fa-dumpster animate-bounce"></i></div>
+                    <h3>The Blue Commingled Bin</h3>
+                    <p>Singapore operates a commingled single-stream recycling system. All valid materials go into one bin without separation, which makes preparation critical to avoid ruining batches.</p>
+                    <ul class="edu-list">
+                        <li><strong>Paper & Cardboard:</strong> Fold flat boxes down. Do not include food boxes soaked in grease.</li>
+                        <li><strong>Plastics:</strong> Bottles, detergent packaging, and shampoo tubs must be completely clean.</li>
+                        <li><strong>Metals:</strong> Clean food cans, beverage aluminum cans, and metal biscuit tins are accepted.</li>
+                        <li><strong>Glass:</strong> Bottles, cosmetic jars, and medicine vials. No mirrors or windows.</li>
+                    </ul>
                 </div>
 
-                <!-- Tracker Stats Dashboard -->
-                <div class="card dashboard-card">
-                    <h3>Your Dashboard</h3>
-                    <div class="stats-row">
-                        <div class="stat-box">
-                            <div class="stat-num" id="stat-total-recycled">0</div>
-                            <div class="stat-label">Correctly Recycled</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num" id="stat-total-points">0</div>
-                            <div class="stat-label">Total Points Earned</div>
-                        </div>
-                    </div>
-                    
-                    <h4>Recent Logs</h4>
-                    <ul id="log-list" class="log-list">
-                        <li class="empty-log">No entries logged today yet.</li>
+                <!-- Contamination Hazards Card -->
+                <div class="edu-card">
+                    <div class="edu-card-icon danger-theme"><i class="fa-solid fa-biohazard"></i></div>
+                    <h3>The Contamination Crisis</h3>
+                    <p>Around 40% of items put inside blue recycling bins currently cannot be processed because they are dirty, toxic, or non-recyclable.</p>
+                    <ul class="edu-list">
+                        <li><strong>Food and Liquids:</strong> Half-empty cups or leftover food ruins clean paper items around it.</li>
+                        <li><strong>Tissue & Wipes:</strong> Used tissues lose paper fiber integrity and are heavily contaminated with hygiene waste.</li>
+                        <li><strong>Styrofoam Packaging:</strong> Food containers or item packing structural blocks are strictly rejected from blue streams.</li>
+                    </ul>
+                </div>
+
+                <!-- Extended EPR Schemes -->
+                <div class="edu-card">
+                    <div class="edu-card-icon specialized-theme"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Specialized Recovery Streams</h3>
+                    <p>Certain classes of materials must never enter the blue bin infrastructure because they require specific sorting procedures or toxic chemical processing pipelines.</p>
+                    <ul class="edu-list">
+                        <li><strong>Beverage Containers:</strong> Return plastic drink bottles and cans to dedicated Reverse Vending Machines (RVMs) for a deposit refund.</li>
+                        <li><strong>Regulated E-Waste:</strong> Batteries, computers, electrical cables, charging brick adapters, and large household appliances require dedicated electronic waste collection boxes.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Community Hub Section -->
-    <section id="community-section" class="bg-light">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>Interactive Community Forums</h2>
-                <p>Organize cleanup events, schedule recycling facility trips, and connect with your residential neighborhood group.</p>
-            </div>
-
-            <div class="forum-layout">
-                <div class="forum-main">
-                    <div class="forum-header">
-                        <h3>Active Events & Campaigns</h3>
-                        <button class="btn btn-primary btn-sm" id="btn-create-post">
-                            <i class="fa-solid fa-plus"></i> Organize Event
-                        </button>
-                    </div>
-
-                    <div id="posts-container" class="posts-container">
-                        <!-- Mock Post 1 -->
-                        <div class="post-card">
-                            <div class="post-meta">
-                                <span class="post-author"><i class="fa-solid fa-circle-user"></i> Student_Eco_SG</span>
-                                <span class="post-tag tag-cleanup">Cleanup</span>
-                            </div>
-                            <h4>Saturday Block Cleanup & Bin Sorting Drive</h4>
-                            <p>We are gathering at the void deck of Block 423 to map recycling accessibility and help neighbors sort their items correctly before dropping them down the chutes.</p>
-                            <div class="post-actions">
-                                <button class="btn-like"><i class="fa-regular fa-thumbs-up"></i> <span class="count">24</span></button>
-                                <button class="btn-rsvp"><i class="fa-regular fa-calendar-check"></i> RSVP (<span class="count">12</span>)</button>
-                            </div>
-                        </div>
-
-                        <!-- Mock Post 2 -->
-                        <div class="post-card">
-                            <div class="post-meta">
-                                <span class="post-author"><i class="fa-solid fa-circle-user"></i> GreenCivils</span>
-                                <span class="post-tag tag-facility">Facility Tour</span>
-                            </div>
-                            <h4>Educational Visit to Tuas Nexus Recycling Facility</h4>
-                            <p>Want to see what happens to items when contamination occurs? Organizing a student and residential bus trip to view processing lines first-hand.</p>
-                            <div class="post-actions">
-                                <button class="btn-like"><i class="fa-regular fa-thumbs-up"></i> <span class="count">41</span></button>
-                                <button class="btn-rsvp"><i class="fa-regular fa-calendar-check"></i> RSVP (<span class="count">32</span>)</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- Page Footer Links -->
     <footer>
         <div class="container text-center">
-            <p>&copy; 2026 EcoCycle SG. Empowering residential communities to prevent recycling waste contamination.</p>
+            <p>&copy; 2026 EcoArcade SG. Built specifically to gamify domestic waste reduction strategies.</p>
         </div>
     </footer>
 
-    <!-- JavaScript Actions -->
     <script src="script.js"></script>
 </body>
 </html>
