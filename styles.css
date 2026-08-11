@@ -1,16 +1,14 @@
-/* --- Global Variables and Layout Configuration --- */
+/* --- Global Reset & Arcade Variables --- */
 :root {
-    --primary: #059669;
-    --primary-light: #34d399;
-    --primary-dark: #047857;
-    --secondary: #0284c7;
-    --dark: #0f172a;
-    --light-bg: #f8fafc;
-    --danger: #ef4444;
-    --warning: #f59e0b;
-    --arcade-frame: #1e293b;
-    --screen-bg: #020617;
-    --border-radius: 12px;
+    --primary: #10b981;       /* Vibrant Matrix Green */
+    --primary-hover: #059669;
+    --secondary: #0ea5e9;     /* Cyan Neon Blue */
+    --dark-bg: #0f172a;       /* Deep Space Blue */
+    --cabinet-body: #1e293b;  /* Steel Charcoal */
+    --screen-inner: #020617;  /* True CRT Black */
+    --danger: #ef4444;        /* Neon Red */
+    --warning: #f59e0b;       /* Cyber Orange */
+    --radius: 12px;
 }
 
 * {
@@ -21,13 +19,14 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    color: #334155;
-    background-color: #ffffff;
-    line-height: 1.5;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.6;
+    scroll-behavior: smooth;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -35,14 +34,14 @@ body {
 .text-center { text-align: center; }
 .hidden { display: none !important; }
 
-/* --- Navigation & Scoreboard --- */
+/* --- Header & Live Scoreboard --- */
 header {
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 20px 0;
+    padding: 15px 0;
 }
 
 .nav-container {
@@ -52,9 +51,9 @@ header {
 }
 
 .logo {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 900;
-    letter-spacing: -0.05em;
+    color: var(--dark-bg);
 }
 
 .logo span { color: var(--primary); }
@@ -62,7 +61,7 @@ header {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 25px;
+    gap: 30px;
 }
 
 nav a {
@@ -75,75 +74,61 @@ nav a {
 nav a:hover, nav a.active { color: var(--primary); }
 
 .arcade-score {
-    background: #f0fdf4;
-    color: var(--primary-dark);
+    background: #ecfdf5;
+    color: var(--primary-hover);
     padding: 10px 20px;
     border-radius: 50px;
     font-weight: 700;
-    border: 2px solid var(--primary-light);
+    border: 2px solid #a7f3d0;
 }
-
-/* --- Section Formatting --- */
+/* --- Arcade Viewport Section --- */
 .arcade-bg {
-    background: linear-gradient(180deg, #f1f5f9 0%, #cbd5e1 100%);
+    background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
     padding: 60px 0;
 }
 
 .arcade-intro h1 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: 900;
-    margin: 10px 0;
-    color: var(--dark);
+    margin-bottom: 10px;
+    color: var(--dark-bg);
 }
 
 .arcade-intro p {
     color: #475569;
-    max-width: 700px;
-    margin: 0 auto 30px auto;
+    margin-bottom: 30px;
 }
 
-.badge {
-    background: #e2e8f0;
-    padding: 6px 16px;
-    font-weight: 700;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    border-radius: 50px;
-    color: #475569;
-}
-
-/* --- Arcade Cabinet Core Styles --- */
+/* --- The Retro Arcade Frame --- */
 .arcade-cabinet {
-    background: var(--arcade-frame);
-    border-radius: var(--border-radius);
-    padding: 25px;
+    background: var(--cabinet-body);
     border: 6px solid #475569;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
 }
 
 .cabinet-controls {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
     background: #334155;
     padding: 15px;
     border-radius: 8px;
-    margin-bottom: 20px;
-    border-bottom: 4px solid #1e293b;
+    margin-bottom: 25px;
+    border-bottom: 4px solid #0f172a;
 }
 
 .control-label {
     display: block;
     color: #94a3b8;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .toggle-buttons, .picker-grid {
     display: flex;
     gap: 10px;
+    margin-bottom: 15px;
 }
 
 .picker-grid {
@@ -156,33 +141,30 @@ nav a:hover, nav a.active { color: var(--primary); }
     color: #e2e8f0;
     border: none;
     padding: 10px 14px;
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 0.85rem;
     transition: all 0.2s;
-    font-size: 0.9rem;
 }
-
-.mode-btn:hover, .game-select-btn:hover { background: #64748b; }
 
 .mode-btn.active {
     background: var(--warning);
-    color: var(--dark);
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    color: var(--dark-bg);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
 }
 
 .game-select-btn.active {
     background: var(--primary);
     color: white;
-    box-shadow: 0 0 10px rgba(5, 150, 105, 0.5);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
 }
-
-/* --- Inner Arcade Screen --- */
+/* --- CRT Screen Frame --- */
 .cabinet-screen {
-    background: var(--screen-bg);
+    background: var(--screen-inner);
+    border: 4px solid #000000;
     border-radius: 8px;
     padding: 30px;
-    border: 4px solid #000000;
     color: #e2e8f0;
 }
 
@@ -192,190 +174,63 @@ nav a:hover, nav a.active { color: var(--primary); }
     margin-bottom: 25px;
 }
 
-.game-instructions-panel h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-.badge-mode-tutorial {
-    display: inline-block;
-    background: rgba(245, 158, 11, 0.2);
-    color: var(--warning);
-    border: 1px solid var(--warning);
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border-radius: 4px;
-    margin-top: 5px;
-}
-
-.badge-mode-play {
-    display: inline-block;
-    background: rgba(239, 68, 68, 0.2);
-    color: var(--danger);
-    border: 1px solid var(--danger);
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border-radius: 4px;
-    margin-top: 5px;
-}
-
-.instr-text {
-    margin-top: 10px;
-    color: #94a3b8;
-    font-size: 0.95rem;
-}
-
-/* --- Active Play Arena Layouts --- */
+/* --- Gameplay Elements Arena --- */
 .play-arena {
     background: #0b1329;
+    padding: 40px;
     border-radius: 8px;
-    padding: 40px 20px;
-    text-align: center;
-    min-height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    position: relative;
     border: 1px solid #1e293b;
 }
 
-#game-timer-wrapper {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: var(--danger);
-    padding: 6px 14px;
-    border-radius: 4px;
-    font-weight: 700;
-}
-
-#interactive-display-window {
-    margin-bottom: 35px;
-    width: 100%;
-}
-
 .card-item {
-    font-size: 1.8rem;
-    font-weight: 700;
     background: #1e293b;
-    padding: 25px;
-    border-radius: var(--border-radius);
-    display: inline-flex;
+    padding: 30px;
+    border-radius: var(--radius);
+    border: 2px dashed #475569;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    border: 2px dashed #475569;
-    min-width: 250px;
-    color: #ffffff;
 }
 
-.card-item i { font-size: 3.5rem; }
+.card-item i { font-size: 3.5rem; color: var(--secondary); }
 
-.action-row {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-}
+.action-row { display: flex; gap: 15px; justify-content: center; }
 
 .action-btn {
     background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
     color: white;
     border: none;
-    padding: 15px 30px;
-    border-radius: 8px;
+    padding: 12px 28px;
     font-weight: 700;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1.1rem;
     border-bottom: 4px solid #1e40af;
-    transition: transform 0.1s;
 }
 
-.action-btn:active {
-    transform: translateY(2px);
-    border-bottom-width: 2px;
-}
+.action-btn:active { transform: translateY(2px); border-bottom-width: 2px; }
 
 .feedback-box {
     margin-top: 25px;
     background: #0f172a;
-    padding: 15px;
+    padding: 12px;
     border-radius: 6px;
-    text-align: center;
-    font-weight: 600;
     border-left: 4px solid var(--secondary);
 }
 
-/* --- Knowledge Base Formatting --- */
-.edu-bg { padding: 80px 0; background: var(--light-bg); }
-.edu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
+/* --- Knowledge Base Layout --- */
+.edu-bg { padding: 70px 0; background: #ffffff; }
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+.edu-card { background: #f8fafc; padding: 25px; border-radius: var(--radius); border: 1px solid #e2e8f0; }
+.edu-card h3 { color: var(--dark-bg); margin-bottom: 10px; }
+.edu-list { list-style: none; padding-top: 10px; }
+.edu-list li { margin-bottom: 8px; padding-left: 15px; position: relative; }
+.edu-list li::before { content: "•"; color: var(--primary); position: absolute; left: 0; font-weight: bold; }
 
-.edu-card {
-    background: white;
-    border-radius: var(--border-radius);
-    padding: 30px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    border: 1px solid #e2e8f0;
-}
-
-.edu-card-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-}
-
-.blue-theme { background: #e0f2fe; color: var(--secondary); }
-.danger-theme { background: #fee2e2; color: var(--danger); }
-.specialized-theme { background: #fef3c7; color: var(--warning); }
-
-.edu-card h3 { font-size: 1.35rem; margin-bottom: 12px; color: var(--dark); }
-.edu-card p { color: #64748b; margin-bottom: 20px; font-size: 0.95rem; }
-
-.edu-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.edu-list li {
-    font-size: 0.9rem;
-    position: relative;
-    padding-left: 20px;
-}
-
-.edu-list li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: var(--primary);
-    font-weight: 700;
-}
-
-footer {
-    background: var(--dark);
-    color: #64748b;
-    padding: 30px 0;
-    font-size: 0.9rem;
-    border-top: 1px solid #1e293b;
-}
-
-@media (max-width: 768px) {
-    .cabinet-controls { grid-template-columns: 1fr; }
-    .arcade-intro h1 { font-size: 2rem; }
-}
+footer { background: var(--dark-bg); color: #64748b; padding: 25px 0; font-size: 0.85rem; }
